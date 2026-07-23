@@ -36,7 +36,7 @@ export default function CreateTrip({setTrips}:Props) {
       memo
     };
 
-    fetch("http://localhost:3001/trips",{
+    fetch("https://travel-planner-api-dksu.onrender.com/trips",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -45,7 +45,7 @@ export default function CreateTrip({setTrips}:Props) {
     })
       .then((res)=>res.json())
       .then(()=>{
-        return fetch("http://localhost:3001/trips");
+        return fetch("https://travel-planner-api-dksu.onrender.com/trips");
       })
       .then((res)=>res.json())
       .then((data)=>{

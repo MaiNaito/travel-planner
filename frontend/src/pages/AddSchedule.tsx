@@ -39,7 +39,7 @@ export default function AddSchedule() {
 
     console.log(newSchedule);
 
-    fetch("http://localhost:3001/schedules",{
+    fetch("https://travel-planner-api-dksu.onrender.com/schedules",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"

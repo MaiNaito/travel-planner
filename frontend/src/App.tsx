@@ -12,7 +12,7 @@ function App() {
   const [trips,setTrips] = useState<Trip[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/trips")
+    fetch("https://travel-planner-api-dksu.onrender.com/trips")
       .then((res) => res.json())
       .then((data) => {
         setTrips(data);

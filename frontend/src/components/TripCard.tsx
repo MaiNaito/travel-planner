@@ -41,12 +41,12 @@ export default function TripCard({
     if(!window.confirm("本当に旅行予定を削除しますか？")){
       return;
     }
-    fetch(`http://localhost:3001/trips/${id}`,{
+    fetch(`https://travel-planner-api-dksu.onrender.com/trips/${id}`,{
       method:"DELETE",
     })
       .then((res)=>res.json())
       .then(()=>{
-        return fetch("http://localhost:3001/trips");
+        return fetch("https://travel-planner-api-dksu.onrender.com/trips");
       })
       .then((res)=>res.json())
       .then((data)=>{

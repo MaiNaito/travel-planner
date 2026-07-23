@@ -41,12 +41,12 @@ export default function TripDetail() {
     if(!window.confirm("このスケジュールを削除しますか？")){
       return;
     }
-    fetch(`http://localhost:3001/schedules/${scheduleId}`,{
+    fetch(`https://travel-planner-api-dksu.onrender.com/schedules/${scheduleId}`,{
       method:"DELETE",
     })
       .then((res)=>res.json())
       .then(()=>{
-        return fetch(`http://localhost:3001/schedules?trip_id=${id}`);
+        return fetch(`https://travel-planner-api-dksu.onrender.com/schedules?trip_id=${id}`);
       })
       .then((res)=>res.json())
       .then((data)=>{
@@ -66,7 +66,7 @@ export default function TripDetail() {
     (schedule)=>schedule.day===selectedDay);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/trips/${id}`)
+    fetch(`https://travel-planner-api-dksu.onrender.com/trips/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTrip(data);
@@ -75,7 +75,7 @@ export default function TripDetail() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/schedules?trip_id=${id}`)
+    fetch(`https://travel-planner-api-dksu.onrender.com/schedules?trip_id=${id}`)
       .then((res) => res.json())
       .then((data) => {
         setSchedules([...data].sort((a,b)=>a.time.localeCompare(b.time)));

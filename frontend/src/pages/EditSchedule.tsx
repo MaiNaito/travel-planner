@@ -30,7 +30,7 @@ export default function AddSchedule() {
   },[schedules]);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/schedules`)
+    fetch(`https://travel-planner-api-dksu.onrender.com/schedules`)
       .then((res) => res.json())
       .then((data) => {
         setSchedules(data);
@@ -60,7 +60,7 @@ export default function AddSchedule() {
       memo,
     };
 
-    fetch(`http://localhost:3001/schedules/${id}`,{
+    fetch(`https://travel-planner-api-dksu.onrender.com/schedules/${id}`,{
       method:"PUT",
       headers:{
         "Content-Type":"application/json"
