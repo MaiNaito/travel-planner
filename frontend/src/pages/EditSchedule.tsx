@@ -69,7 +69,7 @@ export default function AddSchedule() {
     })
       .then((res)=>res.json())
       .then(()=>{
-        navigate(`/trip/${schedule.trip_id}`);
+        navigate(`/trip/${schedule?.trip_id}`);
       })
   };
 
@@ -78,7 +78,7 @@ export default function AddSchedule() {
       <h2 className="title">予定内容を更新</h2>
       <button
       className="back-btn"
-      onClick={()=>navigate(`/trip/${schedule.trip_id}`)}
+      onClick={()=>navigate(`/trip/${schedule?.trip_id}`)}
       >
         ＜
       </button>
@@ -91,7 +91,7 @@ export default function AddSchedule() {
             setDay(parseInt(e.target.value))
           }
         >
-          {days.map((day) => (
+          {days.map((day:number) => (
           <option key={day }value={day} >
             {day}day
           </option>

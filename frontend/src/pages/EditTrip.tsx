@@ -16,7 +16,7 @@ export default function CreateTrip({trips,setTrips}:Props) {
   const [end_date, setEndDate] = useState("");
   const [memo, setMemo] = useState("");
 
-  const trip = trips.find((trip)=>trip.id === Number(id));
+  const trip = trips.find((trip:any)=>trip.id === Number(id));
 
   useEffect(()=>{
     if(trip){

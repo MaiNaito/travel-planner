@@ -2,17 +2,18 @@ import { useParams,useNavigate } from "react-router-dom";
 import "./TripDetail.css";
 import { useState,useEffect } from "react";
 import type { Schedule } from "../types/schedule";
+import type { Trip } from "../types/trip";
 
 export default function TripDetail() {
   const { id } = useParams();
   const [selectedDay, setSelectedDay] =　useState(1);
   const navigate = useNavigate();
-  const [trip, setTrip] = useState(null);
+  const [trip, setTrip] = useState<Trip|null>(null);
   const [schedules, setSchedules] = useState<Schedule[]>([]);
-  const [days, setDays] = useState([]);
+  const [days, setDays] = useState<number[]>([]);
 
   const handleAddSchedule = () => {
-    navigate(`/trip/${trip.id}/add`,{state:{days}})
+    navigate(`/trip/${trip?.id}/add`,{state:{days}})
   }
 
   const getImage = (destination:string,title:string) =>{
@@ -86,8 +87,8 @@ export default function TripDetail() {
   }, [id]);
 
   useEffect(() => {
-    const start = new Date(trip?.start_date);
-    const end = new Date(trip?.end_date);
+    const start = new Date(trip?.start_date??"");
+    const end = new Date(trip?.end_date??"");
     const diff = Math.floor((end.getTime()-start.getTime())/ (1000*60*60*24))+1;
     setDays(Array.from({length:diff},(_,index)=>index+1));
     }, [trip]);

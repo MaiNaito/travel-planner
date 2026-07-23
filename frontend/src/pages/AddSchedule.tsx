@@ -70,7 +70,7 @@ export default function AddSchedule() {
             setDay(e.target.value)
           }
         >
-          {days.map((day) => (
+          {days.map((day:number) => (
           <option key={day} value={day}>
             {day}day
           </option>
