@@ -48,22 +48,27 @@ export default function CreateTrip({trips,setTrips}:Props) {
       memo
     };
 
-    fetch(`https://travel-planner-api-dksu.onrender.com/trips/${id}`,{
-      method:"PUT",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(UpdatedTrip)
-    })
-      .then((res)=>res.json())
-      .then(()=>{
-        return fetch("https://travel-planner-api-dksu.onrender.com/trips");
+    try{
+      fetch(`https://travel-planner-api-dksu.onrender.com/trips/${id}`,{
+        method:"PUT",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(UpdatedTrip)
       })
-      .then((res)=>res.json())
-      .then((data)=>{
-        setTrips(data);
-        navigate("/");
-      });
+        .then((res)=>res.json())
+        .then(()=>{
+          return fetch("https://travel-planner-api-dksu.onrender.com/trips");
+        })
+        .then((res)=>res.json())
+        .then((data)=>{
+          setTrips(data);
+          alert("旅行内容を更新しました。");
+          navigate("/");
+        });
+    } catch(err){
+      alert("旅行内容の更新に失敗しました。");
+    }
   };
 
   return (

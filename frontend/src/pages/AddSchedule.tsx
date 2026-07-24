@@ -36,20 +36,22 @@ export default function AddSchedule() {
       place,
       memo,
     };
-
-    console.log(newSchedule);
-
-    fetch("https://travel-planner-api-dksu.onrender.com/schedules",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(newSchedule)
-    })
-      .then((res)=>res.json())
-      .then(()=>{
-        navigate(`/trip/${id}`);
+    try{
+      fetch("https://travel-planner-api-dksu.onrender.com/schedules",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(newSchedule)
       })
+        .then((res)=>res.json())
+        .then(()=>{
+          alert("スケジュールを追加しました。");
+          navigate(`/trip/${id}`);
+        })
+    } catch (err){
+      alert("スケジュール追加に失敗しました。");
+    }
   };
 
   return (

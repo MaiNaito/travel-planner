@@ -60,17 +60,22 @@ export default function AddSchedule() {
       memo,
     };
 
-    fetch(`https://travel-planner-api-dksu.onrender.com/schedules/${id}`,{
-      method:"PUT",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(updatedSchedule)
-    })
-      .then((res)=>res.json())
-      .then(()=>{
-        navigate(`/trip/${schedule?.trip_id}`);
+    try{
+      fetch(`https://travel-planner-api-dksu.onrender.com/schedules/${id}`,{
+        method:"PUT",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(updatedSchedule)
       })
+        .then((res)=>res.json())
+        .then(()=>{
+          alert("スケジュールを更新しました。");
+          navigate(`/trip/${schedule?.trip_id}`);
+        })
+    } catch(err){
+      alert("スケジュール更新に失敗しました。")
+    }
   };
 
   return (

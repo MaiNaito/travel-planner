@@ -35,26 +35,28 @@ export default function CreateTrip({setTrips}:Props) {
       end_date,
       memo
     };
-
-    fetch("https://travel-planner-api-dksu.onrender.com/trips",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(newTrip)
-    })
-      .then((res)=>res.json())
-      .then(()=>{
-        return fetch("https://travel-planner-api-dksu.onrender.com/trips");
+    try{
+      fetch("https://travel-planner-api-dksu.onrender.com/trips",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(newTrip)
       })
-      .then((res)=>res.json())
-      .then((data)=>{
-        setTrips(data);
-        navigate("/");
-      });
-  
+        .then((res)=>res.json())
+        .then(()=>{
+          return fetch("https://travel-planner-api-dksu.onrender.com/trips");
+        })
+        .then((res)=>res.json())
+        .then((data)=>{
+          setTrips(data);
+          alert("旅行を登録しました。");
+          navigate("/");
+        });
+    } catch (err){
+      alert("旅行の登録に失敗しました。");
+    }
   };
-
   return (
     <div className="create-trip">
       <h2 className="title">新しい旅行を作成</h2>
