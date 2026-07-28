@@ -135,33 +135,53 @@ export default function TripDetail() {
     </div>
 
     <div className="schedule-list">
-      {filteredSchedules.map((schedule) => (
-        <div
-          key={schedule.id}
-          className="schedule-row"
-        >
-          <div className="schedule-time">
-            {schedule.time.slice(0,5)}
-          </div>
-          <div className="schedule-card">
-          <button
-            className="edit-btn"
-            onClick={()=> navigate(`/schedules/edit/${schedule.id}`,{state:{days}})}>
-          ✏️
-          </button>             
-          <h4>{schedule.title}</h4>
-          <button
-            className="delete-btn" 
-            onClick={()=> handleDeleteSchedule(schedule.id)}>
-            ×
-          </button>
-          <p>{schedule.place}</p>
-          </div>
-  
 
+    {
+      filteredSchedules.length === 0 ? (
+        <div className="empty-schedule">
+          <h2>📝</h2>
+          <p>まだスケジュールがありません</p>
         </div>
-      ))}
-    </div>
+      ) : (
+        filteredSchedules.map((schedule) => (
+          <div
+            key={schedule.id}
+            className="schedule-row"
+          >
+            <div className="schedule-time">
+              {schedule.time.slice(0, 5)}
+            </div>
+
+            <div className="schedule-card">
+              <button
+                className="edit-btn"
+                onClick={() =>
+                  navigate(`/schedules/edit/${schedule.id}`, {
+                    state: { days },
+                  })
+                }
+              >
+                ✏️
+              </button>
+
+              <h4>{schedule.title}</h4>
+
+              <button
+                className="delete-btn"
+                onClick={() =>
+                  handleDeleteSchedule(schedule.id)
+                }
+              >
+                ×
+              </button>
+
+              <p>{schedule.place}</p>
+            </div>
+          </div>
+        ))
+      )
+    }    
+</div>
 
     <button 
       className="add-btn"

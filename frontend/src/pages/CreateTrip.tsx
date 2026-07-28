@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Trip } from "../types/trip";
+import { toast } from "react-toastify";
 import "./CreateTrip.css";
 type Props = {
   setTrips: any;
@@ -50,11 +51,11 @@ export default function CreateTrip({setTrips}:Props) {
         .then((res)=>res.json())
         .then((data)=>{
           setTrips(data);
-          alert("旅行を登録しました。");
+          toast.success("旅行を登録しました。");
           navigate("/");
         });
     } catch (err){
-      alert("旅行の登録に失敗しました。");
+      toast.error("旅行の登録に失敗しました。");
     }
   };
   return (

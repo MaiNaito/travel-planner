@@ -2,6 +2,8 @@ import { useEffect,useState } from "react";
 import { useParams,useNavigate, useLocation } from "react-router-dom";
 import "./EditSchedule.css";
 import type { Schedule } from "../types/schedule";
+import { toast } from "react-toastify";
+
 
 
 export default function AddSchedule() {
@@ -70,11 +72,11 @@ export default function AddSchedule() {
       })
         .then((res)=>res.json())
         .then(()=>{
-          alert("スケジュールを更新しました。");
+          toast.success("スケジュールを更新しました。");
           navigate(`/trip/${schedule?.trip_id}`);
         })
     } catch(err){
-      alert("スケジュール更新に失敗しました。")
+      toast.error("スケジュール更新に失敗しました。")
     }
   };
 

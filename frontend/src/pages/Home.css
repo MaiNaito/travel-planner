@@ -22,4 +22,41 @@
     border-radius: 10px;
   }
 
+  .sort-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .sort-container label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    text-align:left;
+  }
+  
+  .sort-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .sort-select:hover {
+    border-color: #5a8dee;
+  }
+  
+  .sort-select:focus {
+    outline: none;
+    border-color: #5a8dee;
+    box-shadow: 0 0 0 3px rgba(90, 141, 238, 0.2);
+  }
+
   

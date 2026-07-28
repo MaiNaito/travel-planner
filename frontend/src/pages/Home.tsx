@@ -1,5 +1,6 @@
 import TripCard from "../components/TripCard";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "./Home.css";
 import type { Trip } from "../types/trip";
 type Props ={
@@ -8,7 +9,32 @@ type Props ={
 }
 
 export default function Home({trips,setTrips}:Props) {
+const [sortType, setSortType] = useState("dateAsc");
 const navigate = useNavigate();
+const sortedTrips = [...trips];
+
+switch (sortType) {
+  case "dateAsc":
+    sortedTrips.sort(
+      (a, b) =>
+        new Date(a.start_date).getTime() -
+        new Date(b.start_date).getTime()
+    );
+    break;
+
+  case "dateDesc":
+    sortedTrips.sort(
+      (a, b) =>
+        new Date(b.start_date).getTime() -
+        new Date(a.start_date).getTime()
+    );
+    break;
+
+  case "new":
+    sortedTrips.sort((a, b) => b.id - a.id);
+      break;
+}
+
 
 const handleCreateTrip = () => {
   navigate("/create");
@@ -18,9 +44,33 @@ const handleCreateTrip = () => {
     <div>
       <h1 className="home-title">Travel Planner</h1>
       <h2 className="home-subtitle">あなたの旅行</h2>
-      {trips.map((trip) => (
-        <TripCard key={trip.id} trip={trip} setTrips={setTrips}/>
-      ))}
+      <div className="sort-container">
+        <label htmlFor="sort">並び替え</label>
+        <select
+          id="sort"
+          className="sort-select"
+          value={sortType}
+          onChange={(e) => setSortType(e.target.value)}
+        >
+          <option value="dateAsc">出発日が近い順</option>
+          <option value="dateDesc">出発日が遠い順</option>
+          <option value="new">新しく作成した順</option>
+        </select>
+      </div>
+
+      {
+        trips.length === 0 ? (
+          <p>まだ旅行がありません</p>
+        ) : (
+          sortedTrips.map((trip) => (
+            <TripCard
+              key={trip.id}
+              trip={trip}
+              setTrips={setTrips}
+            />
+          ))
+        )
+      }
       <button
         className="button"
         onClick={handleCreateTrip}

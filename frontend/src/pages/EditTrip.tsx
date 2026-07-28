@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./EditTrip.css";
+import { toast } from "react-toastify";
 
 type Props = {
   trips:any;
@@ -63,11 +64,11 @@ export default function CreateTrip({trips,setTrips}:Props) {
         .then((res)=>res.json())
         .then((data)=>{
           setTrips(data);
-          alert("旅行内容を更新しました。");
+          toast.success("旅行内容を更新しました。");
           navigate("/");
         });
     } catch(err){
-      alert("旅行内容の更新に失敗しました。");
+      toast.error("旅行内容の更新に失敗しました。");
     }
   };
 

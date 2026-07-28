@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useParams,useNavigate, useLocation } from "react-router-dom";
 import type { Schedule } from "../types/schedule";
 import "./AddSchedule.css";
+import { toast } from "react-toastify";
 
 export default function AddSchedule() {
-  const [day, setDay] = useState("");
+  const [day, setDay] = useState(1);
   const [time, setTime] = useState("");
   const [title, setTitle] = useState("");
   const [place, setPlace] = useState("");
@@ -46,11 +47,11 @@ export default function AddSchedule() {
       })
         .then((res)=>res.json())
         .then(()=>{
-          alert("スケジュールを追加しました。");
+          toast.success("スケジュールを追加しました。");
           navigate(`/trip/${id}`);
         })
     } catch (err){
-      alert("スケジュール追加に失敗しました。");
+      toast.error("スケジュール追加に失敗しました。");
     }
   };
 
@@ -69,7 +70,7 @@ export default function AddSchedule() {
         <select
           value={day}
           onChange={(e) =>
-            setDay(e.target.value)
+            setDay(Number(e.target.value))
           }
         >
           {days.map((day:number) => (

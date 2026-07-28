@@ -7,6 +7,7 @@ import AddSchedule from "./pages/AddSchedule";
 import EditTrip from "./pages/EditTrip";
 import type { Trip } from "./types/trip";
 import EditSchedule from "./pages/EditSchedule";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [trips,setTrips] = useState<Trip[]>([]);
@@ -51,6 +52,7 @@ function App() {
       />
 
       </Routes>
+      <ToastContainer />
       
     </BrowserRouter>
   );
