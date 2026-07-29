@@ -60,3 +60,37 @@
   }
 
   
+
+.filter-group {
+  margin: 20px 0;
+}
+
+.filter-group p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.filter-options {
+  display: flex;
+  gap: 8px;
+  justify-content:center;
+}
+
+.filter-options label {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.2s;
+}
+
+.filter-options input {
+  display: none;
+}
+
+.filter-options label:has(input:checked) {
+  background-color: #5a8dee;
+  color: white;
+  border-color: #5a8dee;
+}

@@ -64,15 +64,45 @@ const handleCreateTrip = () => {
           <option value="new">新しく作成した順</option>
         </select>
       </div>
-      <select
-        value={filterType}
-        onChange={(e)=>setFilterType(e.target.value)}
-      >
-        <option value="すべて">すべて</option>
-        <option value="国内">国内</option>
-        <option value="海外">海外</option>
-      </select>
 
+      <div className="filter-group">
+      <p>旅行タイプ</p>
+
+      <div className="filter-options">
+        <label>
+          <input
+            type="radio"
+            name="filterType"
+            value="すべて"
+            checked={filterType === "すべて"}
+            onChange={(e) => setFilterType(e.target.value)}
+          />
+          すべて
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="filterType"
+            value="国内"
+            checked={filterType === "国内"}
+            onChange={(e) => setFilterType(e.target.value)}
+          />
+          国内
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="filterType"
+            value="海外"
+            checked={filterType === "海外"}
+            onChange={(e) => setFilterType(e.target.value)}
+          />
+          海外
+        </label>
+      </div>
+    </div>
       {
         trips.length === 0 ? (
           <p>まだ旅行がありません</p>
