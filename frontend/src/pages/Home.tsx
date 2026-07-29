@@ -10,8 +10,15 @@ type Props ={
 
 export default function Home({trips,setTrips}:Props) {
 const [sortType, setSortType] = useState("dateAsc");
+const [filterType,setFilterType]=useState("すべて");
 const navigate = useNavigate();
-const sortedTrips = [...trips];
+const filteredTrips =
+  filterType==="すべて"
+    ? trips
+    : trips.filter(
+        trip => trip.category===filterType
+      );
+const sortedTrips = [...filteredTrips];
 
 switch (sortType) {
   case "dateAsc":
@@ -57,6 +64,14 @@ const handleCreateTrip = () => {
           <option value="new">新しく作成した順</option>
         </select>
       </div>
+      <select
+        value={filterType}
+        onChange={(e)=>setFilterType(e.target.value)}
+      >
+        <option value="すべて">すべて</option>
+        <option value="国内">国内</option>
+        <option value="海外">海外</option>
+      </select>
 
       {
         trips.length === 0 ? (

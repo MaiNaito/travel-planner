@@ -14,11 +14,13 @@ export default function CreateTrip({setTrips}:Props) {
   const [start_date, setStartDate] = useState("");
   const [end_date, setEndDate] = useState("");
   const [memo, setMemo] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleSave = () => {
     const reqFields=[
       {value:title,message:"旅行名を入力してください" },
       {value:destination,message:"行き先を入力してください" },
+      {value:category,message:"旅行タイプを選択してください" },
       {value:start_date,message:"開始日を入力してください" },
       {value:end_date,message:"終了日を入力してください" }
     ]
@@ -32,6 +34,7 @@ export default function CreateTrip({setTrips}:Props) {
       id: Date.now(),
       title,
       destination,
+      category,
       start_date,
       end_date,
       memo
@@ -87,7 +90,34 @@ export default function CreateTrip({setTrips}:Props) {
           }
         />
       </div>
-      
+      <div className="radio-group">
+        <label>旅行タイプ</label>
+
+        <div className="radio-options">
+          <label>
+            <input
+              type="radio"
+              name="category"
+              value="国内"
+              checked={category === "国内"}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+            国内
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="category"
+              value="海外"
+              checked={category === "海外"}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+            海外
+          </label>
+        </div>
+      </div>
+            
       <div className="form-group">
         <label>開始日</label>
         <input

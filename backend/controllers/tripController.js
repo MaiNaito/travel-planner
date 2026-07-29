@@ -16,6 +16,7 @@ const createTrip = (req, res) => {
   const {
     title,
     destination,
+    category,
     start_date,
     end_date,
     memo
@@ -23,8 +24,8 @@ const createTrip = (req, res) => {
 
   const sql = `
     INSERT INTO trips
-    (title, destination, start_date, end_date, memo)
-    VALUES (?, ?, ?, ?, ?)
+    (title, destination, category, start_date, end_date, memo)
+    VALUES (?, ?, ?, ?, ?, ?)
   `;
 
   connection.query(
@@ -32,6 +33,7 @@ const createTrip = (req, res) => {
     [
       title,
       destination,
+      category,
       start_date,
       end_date,
       memo,
@@ -93,6 +95,7 @@ const updateTrip = (req, res) => {
   const {
     title,
     destination,
+    category,
     start_date,
     end_date,
     memo,
@@ -103,6 +106,7 @@ const updateTrip = (req, res) => {
     SET
     title = ?,
     destination = ?,
+    category = ?,
     start_date = ?,
     end_date = ?,
     memo = ?
@@ -114,6 +118,7 @@ const updateTrip = (req, res) => {
     [
       title,
       destination,
+      category,
       start_date,
       end_date,
       memo,
